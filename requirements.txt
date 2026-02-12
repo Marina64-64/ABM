@@ -1,0 +1,50 @@
+# Core Framework - Essential for testing
+fastapi==0.109.0
+uvicorn[standard]==0.27.0
+pydantic==2.5.3
+pydantic-settings==2.1.0
+
+# Browser Automation - Essential
+playwright==1.41.0
+
+# HTTP & Async - Essential
+httpx==0.26.0
+# aiohttp==3.9.1  # Optional: causes build issues on some systems
+
+# Database - Essential (SQLite only for now)
+sqlalchemy==2.0.25
+aiosqlite==0.19.0
+
+# Web Scraping & Parsing - Essential
+beautifulsoup4==4.12.3
+lxml==5.1.0
+
+# Image Processing - Essential
+Pillow==10.2.0
+
+# Data Processing - Essential
+pandas==2.2.0
+
+# Utilities - Essential
+python-dotenv==1.0.1
+python-multipart==0.0.6
+click==8.1.7
+
+# Logging - Essential
+loguru==0.7.2
+
+# Testing - Essential
+pytest==7.4.4
+pytest-asyncio==0.23.3
+
+# Additional utilities
+tqdm==4.66.1
+colorama==0.4.6
+tabulate==0.9.0
+
+# Optional: Install these separately if needed
+# selenium==4.17.2
+# opencv-python==4.9.0.80
+# celery==5.3.6
+# redis==5.0.1
+# psycopg2-binary==2.9.9  # For PostgreSQL
