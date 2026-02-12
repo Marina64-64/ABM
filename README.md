@@ -16,16 +16,18 @@ The framework utilizes a decoupled, event-driven architecture designed for high 
 graph TD
     User([External Client]) -->|HTTP POST| API[FastAPI Service]
     API -->|Async Task| Broker[RabbitMQ Message Queue]
-    API -.->|Query| DB[(PostgreSQL)]
     
-    Broker -->|Consume| W1[Worker Node 1]
-    Broker -->|Consume| W2[Worker Node 2]
+    subgraph Worker_Pool [Scalable Worker Pool]
+        W1[Worker Node 1]
+        W2[Worker Node 2]
+    end
     
-    W1 -->|Automation| Site{Target Site}
-    W2 -->|Automation| Site
+    Broker -->|Consume| Worker_Pool
     
-    W1 -->|Update| DB
-    W2 -->|Update| DB
+    Worker_Pool -->|Interaction Simulation| Site{Target Site}
+    Worker_Pool -->|Result Update| DB[(PostgreSQL)]
+    
+    API -.->|Result Query| DB
 ```
 
 Full architecture specifications are available in [docs/architecture.md](docs/architecture.md).
