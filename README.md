@@ -373,6 +373,31 @@ The following deliverables are included in this project for the ABM Egypt techni
 3.  ✅ **Task 4 Architecture**: Detailed design specs in `docs/architecture.md`.
 4.  ✅ **Functional Codebase**: Fully automated verification and API framework.
 
+## ✅ How to Verify the Submission
+
+If you want to manually verify that everything works:
+
+### 1. Task 1 (Recaptcha Automation)
+Run the verification script. It will open the site, click the run button, and log the scores.
+```bash
+python -m src.task1_automation.automation --runs 10
+```
+Check `data/results/automation_results.json` for the score data.
+
+### 2. Task 2 & 4 (API & Scalability)
+Launch the Docker environment:
+```bash
+docker-compose up -d
+```
+Open `http://localhost:8000/docs` to test the API endpoints interactively.
+
+### 3. Task 3 (BLS Scraper)
+Run the specific BLS scraper:
+```bash
+python scripts/task3_bls_scraper.py
+```
+This will generate `allimages.json` (100+ items) and `visible_images_only.json` (the 9 CAPTCHA images) in your project root.
+
 **Submission Package Summary:**
 - [x] Comprehensive README.md
 - [x] Verified Interaction Scripts (Task 1)
