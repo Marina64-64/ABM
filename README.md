@@ -376,7 +376,3 @@ The following deliverables are included in this project for the ABM Egypt techni
 - [x] RESTful API Service (Task 2)
 - [x] DOM Scraper (Task 3)
 - [x] System Architecture Documentation (Task 4)
-
----
-
-**Note**: This project is for educational and assessment purposes. Always respect website terms of service and reCAPTCHA usage policies.
