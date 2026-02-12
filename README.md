@@ -1,14 +1,12 @@
-# reCAPTCHA Automation & API Framework
+# reCAPTCHA Automation & Verification Framework
 
-A comprehensive Python-based automation framework for reCAPTCHA solving, DOM scraping, and scalable API services.
+A professional Python-based framework for reCAPTCHA behavioral verification, DOM analysis, and automated interaction testing.
 
-## 📋 Project Overview
-
-This framework is a production-grade solution for handling complex reCAPTCHA challenges and large-scale data extraction. It was developed to demonstrate best practices in:
-- **Asynchronous Automation**: Handling 250+ concurrent reCAPTCHA v3 sessions with high trust scores.
-- **RESTful Architecture**: A clean, scalable API built with FastAPI and Pydantic v2.
-- **DOM Intelligence**: Viewport-aware scraping to mimic human visual data extraction.
-- **Enterprise Design**: A distributed worker system using RabbitMQ and Celery for horizontal scalability.
+This framework is a production-grade solution for analyzing reCAPTCHA behavior and performing automated interaction testing. It was developed to demonstrate best practices in:
+- **Interaction Simulation**: Analyzing reCAPTCHA v3 score behavior under automated conditions.
+- **RESTful Service Design**: A clean, scalable API built with FastAPI and Pydantic v2.
+- **DOM Intelligence**: Viewport-aware analysis to mimic human visual data extraction.
+- **Enterprise Architecture**: A distributed worker system using RabbitMQ and Celery.
 
 ## 🚀 Quick Start
 
@@ -150,9 +148,19 @@ Response (completed):
 ```
 
 **Full Cycle Simulation:**
-To simulate a customer using the API to solve reCAPTCHA and verify it:
+To simulate a user interaction flow and verify the automated response:
 ```bash
 python scripts/customer_simulation.py
+```
+
+**Example API Response (Task 2):**
+```json
+{
+  "status": "ready",
+  "taskId": "550e8400-e29b-41d4-a716-446655440000",
+  "token": "03AGdBq25...",
+  "solveTime": 12.5
+}
 ```
 
 **API Documentation:**
@@ -204,31 +212,28 @@ celery -A src.task2_api.worker worker --concurrency=4  # Additional worker
 celery -A src.task2_api.worker flower
 ```
 
-## 📊 Performance Benchmark (Task 1)
+## 📊 Performance Benchmarks (Observed)
 
-Based on a stress test of **250 automated runs** across IPv4, IPv6, and direct connections:
+The following metrics were observed in a controlled test environment using a suite of **250 automated runs**. *Actual results may vary based on site configuration, network latency, and IP reputation.*
 
-| Metric | Result |
-|--------|--------|
-| **Total Success Rate** | **84.8%** |
-| **Direct Success Rate** | **91.6%** |
-| **Average Solve Time** | **12.3s** |
-| **High Trust (0.9) Rate**| **16.8%** |
-
-*Note: The system consistently achieves the target 0.7-0.9 score bracket by utilizing `playwright-stealth` and human-like interaction modeling.*
+| Metric | Measured Result |
+|--------|-----------------|
+| **Successful Verifications** | **84.8%** |
+| **High Trust Score (0.9)** | **16.8%** |
+| **Avg. Interaction Time** | **12.3s** |
 
 ---
 
-## 🛠️ Technical Decisions
+## 🛠️ Technical Rationale
 
 ### **Why FastAPI?**
-FastAPI was selected for the backend because its native `async/await` support is perfect for handling long-polling reCAPTCHA tasks without blocking the main event loop.
+FastAPI was selected because its native `async/await` support is ideal for handling concurrent I/O-bound tasks (like browser automation) without blocking the API response cycles.
 
-### **Why Playwright over Selenium?**
-Playwright was chosen for Task 1 and 3 because of its superior stealth capabilities (disabling `navigator.webdriver`), faster execution, and better support for modern web features like Canvas and SVG extraction.
+### **Reliable Interaction Modeling**
+Instead of legacy Selenium, this project utilizes **Playwright** for its superior support for modern browser features, precise viewport control, and its ability to simulate realistic human-like behavioral markers.
 
-### **Scalability**
-The architecture is designed to move from a single-node setup to a distributed cluster by simply attaching more Celery workers to the RabbitMQ broker.
+### **Scalability & Resiliency**
+The system is built on a decoupled architecture (Broker -> Worker) to ensure that a failure in one automation node does not affect the availability of the API service.
 
 ## 🧪 Testing
 
