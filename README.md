@@ -8,13 +8,40 @@ This framework is a production-grade solution for analyzing reCAPTCHA behavior a
 - **DOM Intelligence**: Viewport-aware analysis to mimic human visual data extraction.
 - **Enterprise Architecture**: A distributed worker system using RabbitMQ and Celery.
 
-## 🚀 Quick Start
+## 🏗️ System Architecture (Task 4)
 
-### Prerequisites
-- Python 3.9 or higher
-- Chrome/Chromium browser
-- RabbitMQ (for Task 4 architecture)
-- PostgreSQL or SQLite
+The framework utilizes a decoupled, event-driven architecture designed for high throughput and fault tolerance:
+
+```mermaid
+graph TD
+    User([External Client]) -->|HTTP POST| API[FastAPI Service]
+    API -->|Async Task| Broker[RabbitMQ Message Queue]
+    API -.->|Query| DB[(PostgreSQL)]
+    
+    Broker -->|Consume| W1[Worker Node 1]
+    Broker -->|Consume| W2[Worker Node 2]
+    
+    W1 -->|Automation| Site{Target Site}
+    W2 -->|Automation| Site
+    
+    W1 -->|Update| DB
+    W2 -->|Update| DB
+```
+
+Full architecture specifications are available in [docs/architecture.md](docs/architecture.md).
+
+## 🚀 Quick Start (Production Setup)
+
+The entire environment (DB, Queue, API, and Workers) can be launched using Docker:
+
+```bash
+# 1. Start all services
+docker-compose up -d
+
+# 2. Access Documentation
+# API: http://localhost:8000/docs
+# Queue Monitor: http://localhost:15672 (guest/guest)
+```
 
 ### Installation
 
