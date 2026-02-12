@@ -185,9 +185,21 @@ python scripts/customer_simulation.py
 {
   "status": "ready",
   "taskId": "550e8400-e29b-41d4-a716-446655440000",
-  "token": "03AGdBq25...",
-  "solveTime": 12.5
+  "token": "03AGdBq25S-...",
+  "solveTime": 12.35
 }
+```
+
+**Example Scraper Output (Task 3):**
+```json
+[
+  {
+    "index": 0,
+    "src": "https://example.com/logo.png",
+    "base64": "iVBORw0KGgoAAAANSUhEUgAA...",
+    "type": "img"
+  }
+]
 ```
 
 **API Documentation:**
@@ -343,12 +355,20 @@ MIT License
 - Built with Python, FastAPI, and Playwright
 - Architecture inspired by industry best practices
 
-1. **README.md** - Main project documentation
-2. **QUICKSTART.md** - 5-minute quick start guide
-3. **docs/Task1QA_MarinaNashaat.md** - Task 1 analysis and Q&A (Required Deliverable)
-4. **docs/architecture.md** - System architecture (Task 4)
-5. **scripts/customer_simulation.py** - Full cycle customer simulation (Task 2)
-6. **CONTRIBUTING.md** - Development guidelines
+## 📬 Submission Checklist
+
+As per the assessment requirements, please ensure the following:
+
+1.  **GitHub Repo**: Publicly accessible at `https://github.com/Marina64-64/ABM`
+2.  **Task 1 PDF**: Export `docs/Task1QA_MarinaNashaat.md` to PDF format.
+3.  **Email Deliverables**: Send the repo link and PDF to `HR@abmegypt.com`.
+
+**Required Deliverables Summary:**
+- [x] README.md (Comprehensive documentation)
+- [x] Task 1 Q&A (PDF format)
+- [x] Functional Automation Script
+- [x] Scalable API Service
+- [x] System Architecture Design
 
 ---
 
