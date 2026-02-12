@@ -222,23 +222,24 @@ python scripts/customer_simulation.py
 
 ### Task 3: DOM Scraping
 
-Extract images and text from target site:
+Extract images and text from web pages, including a specialized module for the BLS Spain CAPTCHA site.
 
+**Run Specific BLS Spain Scraper:**
+To scrape the specific Egyptian BLS site and generate required files (`allimages.json`, `visible_images_only.json`):
 ```bash
-# Run DOM scraper
-python -m src.task3_scraping.dom_scraper --url https://target-site.com
+python scripts/task3_bls_scraper.py
+```
 
-# Output files:
-# - data/output/allimages.json (all images as base64)
-# - data/output/visible_images_only.json (visible images only)
-# - data/output/text_instructions.txt (visible text)
+**Run Generic Scraper:**
+```bash
+python -m src.task3_scraping.dom_scraper --url https://example.com
 ```
 
 **Features:**
-- Extracts all images (including canvas/SVG)
-- Filters only visible images using viewport detection
-- Converts images to base64 encoding
-- Extracts visible text instructions
+- Extracts all images (including canvas/SVG) as base64
+- Filters only the 9 visible images using human-like viewport detection
+- Converts all image types to portable base64 encoding
+- Extracts only visible text instructions as requested
 
 ### Task 4: System Architecture
 
