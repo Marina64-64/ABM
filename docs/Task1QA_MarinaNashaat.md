@@ -70,4 +70,36 @@ The system was configured to meet the requirement of at least 15% of scores bein
 | **Runs with 0.9 Score** | 42 (16.8%) |
 | **Runs with 0.7-0.8 Score** | 208 (83.2%) |
 
-*All results were extracted from the site output and logged in `data/results/automation_results.json`.*
+## Task 4: Scalable System Architecture
+**Focus**: Distributed Processing, Monitoring, and High Availability
+
+### 1. Architectural Overview
+The system is designed as a distributed microservices ecosystem to handle high-volume reCAPTCHA solving requests. It utilizes a producer-consumer pattern to decouple the API surface from the intensive browser automation tasks.
+
+### 2. Core Infrastructure Components
+
+| Component | Technology | Purpose |
+|-----------|------------|---------|
+| **Load Balancer** | Nginx / HAProxy | Distributes incoming HTTP traffic across multiple API nodes. |
+| **API Layer** | FastAPI (Async) | Handles task ingestion, sitekey validation, and result polling. |
+| **Message Broker**| RabbitMQ | Managed task distribution and ensures message persistence. |
+| **Worker Pool** | Celery + Playwright | Executes browser automation in a horizontally scaled environment. |
+| **Database** | PostgreSQL | Stores persistent task history, solve times, and success metrics. |
+| **Cache Layer** | Redis | Provides low-latency task status and rate-limiting counters. |
+
+### 3. Monitoring & Observability Integration
+The architecture includes dedicated integration points for real-time monitoring:
+*   **System Health**: Health check endpoints (`/health`) on all microservices for load balancer heartbeats.
+*   **Current Load**: Prometheus metrics tracking queue depth and active worker counts.
+*   **Dashboards**: Grafana integration for visualizing solve rates, latencies, and system performance.
+*   **Error Logging**: Centralized ELK stack (Elasticsearch, Logstash, Kibana) for structured error tracking.
+
+### 4. Scaling & Failover Mechanisms
+*   **Horizontal Scaling**: New worker nodes can be added dynamically based on RabbitMQ queue depth.
+*   **Failover**: RabbitMQ mirrored queues and PostgreSQL primary-replica configurations prevent single points of failure.
+*   **Recovery**: Automatic Task Re-queuing (Max 3 retries) with exponential backoff for failed solve attempts.
+*   **Circuit Breaking**: Prevents system overload by rejecting requests if the queue exceeds safe thresholds.
+
+### 5. Deployment Readiness
+The entire stack is containerized using **Docker** and **Docker Compose**, allowing for consistent deployments across development, staging, and production environments.
+
